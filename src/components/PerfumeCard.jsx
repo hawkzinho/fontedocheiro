@@ -17,7 +17,7 @@ export default function PerfumeCard({ perfume, showHighlightBadge = false }) {
         <img
           src={image}
           alt={perfume.nome}
-          className="h-[285px] w-full object-cover transition duration-200 group-hover:scale-[1.03] sm:h-[320px]"
+          className="h-[260px] w-full object-cover transition duration-200 group-hover:scale-[1.03] sm:h-[320px]"
           loading="lazy"
         />
 
@@ -32,12 +32,12 @@ export default function PerfumeCard({ perfume, showHighlightBadge = false }) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-5">
+      <div className="flex flex-1 flex-col gap-3 p-4 sm:gap-4 sm:p-5">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold/90">
             {perfume.marca}
           </p>
-          <h3 className="mt-3 font-display text-[1.55rem] leading-[1.05] tracking-[-0.04em] text-ink">
+          <h3 className="mt-2.5 font-display text-[1.35rem] leading-[1.08] tracking-[-0.035em] text-ink sm:mt-3 sm:text-[1.55rem] sm:leading-[1.05]">
             {perfume.nome}
           </h3>
           <p className="mt-3 text-sm font-medium text-slate">

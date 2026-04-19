@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fallbackPerfume from '../assets/fallback-perfume.svg';
-import BrandMark from '../components/BrandMark';
 import PerfumeForm from '../components/PerfumeForm';
 import Skeleton from '../components/Skeleton';
 import { useToast } from '../components/ToastProvider';
@@ -222,8 +221,7 @@ export default function AdminDashboard() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="section-label">Painel administrativo</p>
-              <BrandMark className="mt-4" compact showDescriptor={false} />
-              <h1 className="mt-5 font-display text-4xl font-medium tracking-[-0.04em] text-ink sm:text-5xl">
+              <h1 className="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] text-ink sm:mt-4 sm:text-5xl">
                 Gestao do catalogo
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate">
@@ -268,7 +266,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className="card-shell mt-6 overflow-hidden">
-          <div className="border-b border-line px-6 py-5">
+          <div className="border-b border-line px-5 py-4 sm:px-6 sm:py-5">
             <p className="text-lg font-semibold text-ink">Perfumes cadastrados</p>
             <p className="mt-1 text-sm text-slate">
               Atualizacoes no painel refletem no site sem precisar de reload manual.
@@ -282,7 +280,74 @@ export default function AdminDashboard() {
               ))}
             </div>
           ) : perfumes.length ? (
-            <div className="overflow-x-auto">
+            <>
+              <div className="space-y-3 px-4 py-4 sm:hidden">
+                {perfumes.map((perfume) => (
+                  <article key={perfume.id} className="rounded-xl border border-line bg-white p-4">
+                    <div className="flex items-start gap-3">
+                      <img
+                        src={perfume.imagem_capa || fallbackPerfume}
+                        alt={perfume.nome}
+                        className="h-16 w-16 rounded-lg object-cover"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-semibold text-ink">{perfume.nome}</p>
+                        <p className="mt-1 text-sm text-slate">{perfume.marca}</p>
+                        <p className="mt-2 text-sm font-medium text-ink">
+                          {formatCurrency(perfume.preco_promocional || perfume.preco)}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      <div className="rounded-lg border border-line px-3 py-2.5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
+                          Disponivel
+                        </p>
+                        <div className="mt-2">
+                          <TableToggle
+                            checked={perfume.disponivel}
+                            onChange={() => handleToggle(perfume, 'disponivel')}
+                            disabled={activeToggleId === `${perfume.id}-disponivel`}
+                          />
+                        </div>
+                      </div>
+                      <div className="rounded-lg border border-line px-3 py-2.5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
+                          Destaque
+                        </p>
+                        <div className="mt-2">
+                          <TableToggle
+                            checked={perfume.destaque}
+                            onChange={() => handleToggle(perfume, 'destaque')}
+                            disabled={activeToggleId === `${perfume.id}-destaque`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditingPerfume(perfume);
+                          setFormOpen(true);
+                        }}
+                        className="button-secondary px-4 py-2"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeleteTarget(perfume)}
+                        className="inline-flex items-center justify-center rounded-lg border border-rose-200 bg-white px-4 py-2 text-sm font-medium text-rose-700 transition duration-150 hover:bg-rose-50"
+                      >
+                        Excluir
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="hidden overflow-x-auto sm:block">
               <table className="min-w-full text-left text-sm">
                 <thead className="bg-mist text-xs uppercase tracking-[0.18em] text-slate">
                   <tr>
@@ -354,7 +419,8 @@ export default function AdminDashboard() {
                   ))}
                 </tbody>
               </table>
-            </div>
+              </div>
+            </>
           ) : (
             <div className="px-6 py-10">
               <p className="text-lg font-semibold text-ink">Seu catalogo comeca aqui.</p>

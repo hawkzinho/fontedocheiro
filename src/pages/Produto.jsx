@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import fallbackPerfume from '../assets/fallback-perfume.svg';
 import PerfumeCard from '../components/PerfumeCard';
 import Skeleton from '../components/Skeleton';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { buildWhatsAppUrl, formatCurrency, formatVolume } from '../lib/formatters';
 import {
   BRAND_CONTENT,
@@ -23,20 +24,6 @@ function BackArrowIcon() {
     >
       <path d="M12.5 4.5 7 10l5.5 5.5" />
       <path d="M7.5 10H17" />
-    </svg>
-  );
-}
-
-function MessageIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-    >
-      <path d="M4 5.5h12A1.5 1.5 0 0 1 17.5 7v6A1.5 1.5 0 0 1 16 14.5H9l-3.5 3v-3H4A1.5 1.5 0 0 1 2.5 13V7A1.5 1.5 0 0 1 4 5.5Z" />
     </svg>
   );
 }
@@ -201,10 +188,10 @@ export default function Produto() {
   const familyGuide = getFamilyGuide(perfume.familia_olfativa);
 
   return (
-    <div className="bg-transparent pb-28 pt-10 sm:pb-16 sm:pt-12">
+    <div className="bg-transparent pb-24 pt-7 sm:pb-16 sm:pt-12">
       <section className="border-b border-line bg-[linear-gradient(180deg,#FFFDF9_0%,#F7F0E7_100%)]">
-        <div className="luxury-container py-10 sm:py-12">
-          <nav className="mb-4 flex flex-wrap items-center gap-2 text-sm text-slate">
+        <div className="luxury-container py-8 sm:py-12">
+          <nav className="mb-3 flex flex-wrap items-center gap-2 text-xs text-slate sm:mb-4 sm:text-sm">
             <Link to="/catalogo" className="transition duration-150 hover:text-gold">
               Inicio
             </Link>
@@ -219,15 +206,15 @@ export default function Produto() {
           <button
             type="button"
             onClick={handleBack}
-            className="mb-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-slate transition duration-150 hover:text-gold"
+            className="mb-5 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-slate transition duration-150 hover:text-gold sm:mb-6"
           >
             <BackArrowIcon />
             Voltar ao catalogo
           </button>
 
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-start">
             <div className="space-y-4">
-              <div className="soft-panel overflow-hidden p-3 sm:p-4">
+              <div className="soft-panel overflow-hidden p-2.5 sm:p-4">
                 <img
                   src={mainImage}
                   alt={perfume.nome}
@@ -236,13 +223,13 @@ export default function Produto() {
               </div>
 
               {images.length ? (
-                <div className="flex gap-3 overflow-x-auto pb-1">
+                <div className="flex gap-2.5 overflow-x-auto pb-1 sm:gap-3">
                   {images.map((image) => (
                     <button
                       key={image}
                       type="button"
                       onClick={() => setSelectedImage(image)}
-                      className={`h-20 w-20 shrink-0 overflow-hidden rounded-xl border transition duration-150 ${
+                      className={`h-[74px] w-[74px] shrink-0 overflow-hidden rounded-xl border transition duration-150 sm:h-20 sm:w-20 ${
                         mainImage === image
                           ? 'border-gold shadow-hush'
                           : 'border-line bg-white'
@@ -261,11 +248,11 @@ export default function Produto() {
 
             <div className="lg:sticky lg:top-24">
               <p className="section-label">{perfume.marca}</p>
-              <h1 className="mt-4 font-display text-4xl font-medium leading-[0.98] tracking-[-0.05em] text-ink sm:text-5xl">
+              <h1 className="mt-3 font-display text-[2.1rem] font-medium leading-[1.02] tracking-[-0.045em] text-ink sm:mt-4 sm:text-5xl sm:leading-[0.98]">
                 {perfume.nome}
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate">
+              <p className="mt-3 max-w-2xl text-[0.97rem] leading-7 text-slate sm:mt-4 sm:text-base sm:leading-8">
                 {familyGuide}
               </p>
 
@@ -280,7 +267,7 @@ export default function Produto() {
                 <span className="status-badge">{formatVolume(perfume.volume_ml)}</span>
               </div>
 
-              <div className="card-shell mt-8 p-6">
+              <div className="card-shell mt-7 p-5 sm:mt-8 sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     {hasPromo ? (
@@ -288,12 +275,12 @@ export default function Produto() {
                         <p className="text-sm text-slate line-through">
                           {formatCurrency(perfume.preco)}
                         </p>
-                        <p className="mt-1 text-4xl font-semibold tracking-[-0.04em] text-gold">
+                        <p className="mt-1 text-[2rem] font-semibold tracking-[-0.04em] text-gold sm:text-4xl">
                           {formatCurrency(perfume.preco_promocional)}
                         </p>
                       </>
                     ) : (
-                      <p className="text-4xl font-semibold tracking-[-0.04em] text-ink">
+                      <p className="text-[2rem] font-semibold tracking-[-0.04em] text-ink sm:text-4xl">
                         {formatCurrency(perfume.preco)}
                       </p>
                     )}
@@ -324,7 +311,7 @@ export default function Produto() {
                       rel="noreferrer"
                       className="button-primary w-full gap-2"
                     >
-                      <MessageIcon />
+                      <WhatsAppIcon className="h-5 w-5" />
                       {PRODUCT_PAGE_CONTENT.cta}
                     </a>
                   ) : (
@@ -369,7 +356,7 @@ export default function Produto() {
       </section>
 
       <section className="luxury-container grid gap-6 py-12 lg:grid-cols-[1.08fr_0.92fr]">
-        <article className="soft-panel p-6 sm:p-8">
+        <article className="soft-panel p-5 sm:p-8">
           <p className="section-label">{PRODUCT_PAGE_CONTENT.detailsTitle}</p>
           {descriptionHtml ? (
             <div
@@ -383,9 +370,9 @@ export default function Produto() {
           )}
         </article>
 
-        <aside className="card-shell p-6 sm:p-8">
+        <aside className="card-shell p-5 sm:p-8">
           <p className="section-label">Compra com confianca</p>
-          <h2 className="mt-4 font-display text-3xl font-medium tracking-[-0.04em] text-ink">
+          <h2 className="mt-4 font-display text-[1.85rem] font-medium leading-[1.08] tracking-[-0.04em] text-ink sm:text-3xl">
             {BRAND_CONTENT.name}
           </h2>
           <p className="mt-4 text-sm leading-8 text-slate">
@@ -415,7 +402,7 @@ export default function Produto() {
         </aside>
       </section>
 
-      <section className="luxury-container pb-4">
+      <section className="luxury-container pb-3 sm:pb-4">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="section-label">{PRODUCT_PAGE_CONTENT.relatedEyebrow}</p>
@@ -427,14 +414,14 @@ export default function Produto() {
         </div>
 
         {related.length ? (
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 lg:gap-6">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 xl:grid-cols-4 lg:gap-6">
             {related.map((item) => (
               <PerfumeCard key={item.id} perfume={item} />
             ))}
           </div>
         ) : (
-          <div className="card-shell mt-10 p-8">
-            <p className="font-display text-3xl font-medium tracking-[-0.04em] text-ink">
+          <div className="card-shell mt-8 p-6 sm:mt-10 sm:p-8">
+            <p className="font-display text-[1.8rem] font-medium leading-[1.1] tracking-[-0.04em] text-ink sm:text-3xl">
               Mais opcoes desta familia vao aparecer aqui.
             </p>
             <p className="mt-4 text-sm leading-7 text-slate">
@@ -444,7 +431,7 @@ export default function Produto() {
         )}
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ivory/95 p-4 shadow-[0_-8px_24px_rgba(46,31,9,0.10)] backdrop-blur sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ivory/95 p-3.5 shadow-[0_-8px_24px_rgba(46,31,9,0.10)] backdrop-blur sm:hidden">
         {whatsappUrl ? (
           <a
             href={whatsappUrl}
@@ -452,7 +439,7 @@ export default function Produto() {
             rel="noreferrer"
             className="button-primary w-full gap-2"
           >
-            <MessageIcon />
+            <WhatsAppIcon className="h-5 w-5" />
             {PRODUCT_PAGE_CONTENT.cta}
           </a>
         ) : (

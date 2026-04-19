@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import BrandMark from './BrandMark';
+import WhatsAppIcon from './WhatsAppIcon';
 import { BRAND_CONTENT } from '../lib/siteContent';
 import { WHATSAPP_NUMBER } from '../lib/supabase';
 
@@ -35,7 +36,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-ivory/90 backdrop-blur-xl">
-      <div className="luxury-container flex h-[76px] items-center justify-between gap-6">
+      <div className="luxury-container flex h-[70px] items-center justify-between gap-4 sm:h-[76px] sm:gap-6">
         <Link to="/catalogo" aria-label={BRAND_CONTENT.name}>
           <BrandMark compact showDescriptor={false} />
         </Link>
@@ -57,8 +58,9 @@ export default function Header() {
             href={whatsappHref}
             target={hasWhatsApp ? '_blank' : undefined}
             rel={hasWhatsApp ? 'noreferrer' : undefined}
-            className="button-secondary"
+            className="button-secondary gap-2 whitespace-nowrap"
           >
+            <WhatsAppIcon className="h-[17px] w-[17px] shrink-0" />
             Atendimento no WhatsApp
           </a>
         </div>
@@ -83,7 +85,7 @@ export default function Header() {
         }`}
       >
         <div
-          className={`absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-ivory px-6 py-6 transition duration-200 ${
+          className={`absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-ivory px-5 py-5 transition duration-200 ${
             menuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -100,16 +102,16 @@ export default function Header() {
             </button>
           </div>
 
-          <p className="mt-8 max-w-xs text-sm leading-7 text-slate">
+          <p className="mt-6 max-w-xs text-sm leading-7 text-slate">
             {BRAND_CONTENT.supportingLine}
           </p>
 
-          <nav className="mt-10 flex flex-1 flex-col gap-4">
+          <nav className="mt-8 flex flex-1 flex-col gap-3">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className="rounded-2xl border border-line bg-white px-5 py-4 text-lg font-medium text-ink transition duration-150 hover:border-stone hover:shadow-hush"
+                className="rounded-2xl border border-line bg-white px-5 py-3.5 text-base font-medium text-ink transition duration-150 hover:border-stone hover:shadow-hush"
               >
                 {item.label}
               </Link>
@@ -120,8 +122,9 @@ export default function Header() {
             href={whatsappHref}
             target={hasWhatsApp ? '_blank' : undefined}
             rel={hasWhatsApp ? 'noreferrer' : undefined}
-            className="button-primary mt-6 w-full"
+            className="button-primary mt-5 w-full gap-2"
           >
+            <WhatsAppIcon className="h-[18px] w-[18px] shrink-0" />
             Falar com a loja
           </a>
         </div>

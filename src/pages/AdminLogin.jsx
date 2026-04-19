@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import heroStillLife from '../assets/hero-still-life.svg';
-import BrandMark from '../components/BrandMark';
 import { ensureSupabaseConfigured, supabase } from '../lib/supabase';
 
 export default function AdminLogin() {
@@ -68,9 +66,9 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#FBF8F3_0%,#F5EEE6_100%)] px-4 py-10 sm:px-6">
-      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-2xl border border-line bg-white shadow-velvet lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="p-8 sm:p-10">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#FBF8F3_0%,#F5EEE6_100%)] px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto max-w-md rounded-2xl border border-line bg-white shadow-velvet">
+        <div className="p-6 sm:p-8">
           <Link
             to="/catalogo"
             className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-slate transition duration-150 hover:text-gold"
@@ -79,19 +77,17 @@ export default function AdminLogin() {
             Voltar ao site
           </Link>
 
-          <div className="mt-10">
-            <BrandMark />
-            <p className="mt-8 section-label">Admin</p>
-            <h1 className="mt-4 font-display text-4xl font-medium tracking-[-0.04em] text-ink">
-              Painel administrativo
+          <div className="mt-7">
+            <p className="section-label">Acesso admin</p>
+            <h1 className="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] text-ink sm:text-[2.2rem]">
+              Entrar
             </h1>
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate">
-              Entre com o usuario criado no Supabase Auth para gerenciar perfumes,
-              disponibilidade, destaques e imagens.
+            <p className="mt-3 text-sm leading-7 text-slate">
+              Use seu usuario e senha para acessar o painel.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="mt-10 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-7 space-y-4">
             <label className="flex flex-col gap-2">
               <span className="text-sm font-medium text-ink">E-mail</span>
               <input
@@ -112,7 +108,7 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 className="field-shell"
-                placeholder="Sua senha do Supabase Auth"
+                placeholder="Sua senha"
               />
             </label>
 
@@ -133,27 +129,6 @@ export default function AdminLogin() {
               )}
             </button>
           </form>
-        </div>
-
-        <div className="hidden border-l border-line bg-[#FCF8F2] p-8 lg:flex lg:flex-col lg:justify-between">
-          <div>
-            <p className="section-label">Gestao da vitrine</p>
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-0.04em] text-ink">
-              Atualize o catalogo sem perder a linguagem da marca.
-            </h2>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-slate">
-              O que muda aqui aparece no site e na jornada de compra quase em tempo
-              real.
-            </p>
-          </div>
-
-          <div className="card-shell overflow-hidden">
-            <img
-              src={heroStillLife}
-              alt="Composicao da Fonte do Cheiro"
-              className="aspect-[4/5] w-full object-cover"
-            />
-          </div>
         </div>
       </div>
     </div>

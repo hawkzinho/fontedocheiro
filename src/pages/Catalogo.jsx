@@ -8,6 +8,7 @@ import {
 import BrandMark from '../components/BrandMark';
 import PerfumeCard from '../components/PerfumeCard';
 import Skeleton from '../components/Skeleton';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { FAMILIAS_OLFATIVAS, GENEROS } from '../lib/constants';
 import { BRAND_CONTENT, HERO_POINTS, TRUST_ITEMS } from '../lib/siteContent';
 import { WHATSAPP_NUMBER, ensureSupabaseConfigured, supabase } from '../lib/supabase';
@@ -294,16 +295,16 @@ export default function Catalogo() {
       <section className="relative overflow-hidden border-b border-line bg-[linear-gradient(180deg,#FFFDF9_0%,#F7F0E7_55%,#FBF8F3_100%)]">
         <div className="absolute right-0 top-0 h-52 w-52 rounded-full bg-sand/80 blur-3xl sm:h-64 sm:w-64" />
 
-        <div className="luxury-container relative py-10 sm:py-12 lg:py-14">
+        <div className="luxury-container relative py-8 sm:py-11 lg:py-14">
           <div className="max-w-4xl">
             <p className="section-label">{BRAND_CONTENT.heroEyebrow}</p>
             <BrandMark compact className="mt-4" showDescriptor={false} />
 
-            <h1 className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-ink sm:text-5xl lg:text-[3.45rem]">
+            <h1 className="mt-5 max-w-3xl font-display text-[2.2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:mt-6 sm:text-5xl lg:text-[3.45rem]">
               {BRAND_CONTENT.heroTitle}
             </h1>
 
-            <p className="mt-4 max-w-2xl text-base leading-8 text-slate sm:text-lg">
+            <p className="mt-3 max-w-2xl text-[0.98rem] leading-7 text-slate sm:mt-4 sm:text-lg sm:leading-8">
               {BRAND_CONTENT.heroCopy}
             </p>
 
@@ -316,11 +317,11 @@ export default function Catalogo() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
               <button
                 type="button"
                 onClick={scrollToGrid}
-                className="button-primary gap-2"
+                className="button-primary w-full gap-2 sm:w-auto"
               >
                 {BRAND_CONTENT.heroPrimaryCta}
                 <ArrowDownIcon />
@@ -329,8 +330,9 @@ export default function Catalogo() {
                 href={whatsappHref}
                 target={hasWhatsApp ? '_blank' : undefined}
                 rel={hasWhatsApp ? 'noreferrer' : undefined}
-                className="button-secondary"
+                className="button-secondary w-full gap-2 sm:w-auto"
               >
+                <WhatsAppIcon className="h-[18px] w-[18px] shrink-0" />
                 {BRAND_CONTENT.heroSecondaryCta}
               </a>
             </div>
@@ -338,15 +340,15 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section ref={gridRef} className="luxury-container scroll-mt-24 py-8 sm:py-10">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+      <section ref={gridRef} className="luxury-container scroll-mt-24 py-7 sm:py-10">
+        <div className="flex flex-col gap-4 sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="section-label">{BRAND_CONTENT.catalogEyebrow}</p>
             <h2 className="section-title">{BRAND_CONTENT.catalogTitle}</h2>
             <p className="section-copy">{BRAND_CONTENT.catalogCopy}</p>
           </div>
 
-          <div className="soft-panel px-5 py-4 text-sm text-slate">
+          <div className="soft-panel px-4 py-3.5 text-sm text-slate sm:px-5 sm:py-4">
             <p className="font-semibold text-ink">{BRAND_CONTENT.catalogCounterLabel}</p>
             <p className="mt-1">
               {loading ? 'Atualizando a colecao...' : `${totalCount} perfume(s) disponiveis`}
@@ -361,7 +363,7 @@ export default function Catalogo() {
           </div>
         </div>
 
-        <div className="mt-8 hidden sm:block">
+        <div className="mt-7 hidden sm:block">
           <div className="soft-panel p-6">
             <div className="grid gap-6">
               <div className="grid gap-6 border-b border-line/70 pb-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
@@ -372,8 +374,9 @@ export default function Catalogo() {
                     href={whatsappHref}
                     target={hasWhatsApp ? '_blank' : undefined}
                     rel={hasWhatsApp ? 'noreferrer' : undefined}
-                    className="button-secondary w-full sm:w-auto lg:min-w-[220px]"
+                    className="button-secondary w-full gap-2 sm:w-auto lg:min-w-[220px]"
                   >
+                    <WhatsAppIcon />
                     Pedir ajuda no WhatsApp
                   </a>
                 </div>
@@ -401,7 +404,7 @@ export default function Catalogo() {
           <SearchField value={searchTerm} onChange={handleSearchChange} />
         </div>
 
-        <div className="sticky top-[76px] z-30 -mx-4 mt-5 border-y border-line/80 bg-ivory/95 px-4 py-3 backdrop-blur sm:hidden">
+        <div className="sticky top-[70px] z-30 -mx-4 mt-4 border-y border-line/80 bg-ivory/95 px-4 py-3 backdrop-blur sm:top-[76px] sm:hidden">
           <button
             type="button"
             onClick={() => setFiltersOpen(true)}
@@ -409,7 +412,7 @@ export default function Catalogo() {
           >
             <span className="inline-flex items-center gap-2">
               <SearchIcon />
-              Filtrar colecao
+              Filtrar catalogo
             </span>
             <span className="text-xs text-slate">
               {loading ? '...' : `${totalCount} itens`}
@@ -430,15 +433,15 @@ export default function Catalogo() {
           />
 
           <div
-            className={`absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col bg-ivory p-6 transition duration-200 ${
+            className={`absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col bg-ivory px-5 py-6 transition duration-200 ${
               filtersOpen ? 'translate-x-0' : '-translate-x-full'
             }`}
           >
             <div className="flex items-center justify-between">
               <div>
                 <p className="section-label">Filtros</p>
-                <h3 className="mt-3 font-display text-3xl font-medium tracking-[-0.04em] text-ink">
-                  Refine a sua busca
+                <h3 className="mt-2 font-display text-[1.8rem] font-medium leading-[1.05] tracking-[-0.04em] text-ink">
+                  Refine a busca
                 </h3>
               </div>
 
@@ -452,7 +455,7 @@ export default function Catalogo() {
               </button>
             </div>
 
-            <div className="mt-8 flex-1 space-y-8 overflow-y-auto">
+            <div className="mt-7 flex-1 space-y-7 overflow-y-auto">
               <FilterGroup
                 title="Genero"
                 options={['Todos', ...GENEROS]}
@@ -481,7 +484,7 @@ export default function Catalogo() {
           </div>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-7">
           {loading ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {Array.from({ length: 6 }).map((_, index) => (
@@ -501,12 +504,12 @@ export default function Catalogo() {
                 ))}
               </div>
 
-              <div className="mt-10 flex flex-col gap-4 border-t border-line/80 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-8 flex flex-col gap-4 border-t border-line/80 pt-6 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm text-slate">
                   Pagina {page} de {totalPages}
                 </p>
 
-                <div className="flex gap-3">
+                <div className="grid grid-cols-2 gap-3 sm:flex">
                   <button
                     type="button"
                     onClick={() => setPage((current) => Math.max(1, current - 1))}
@@ -527,8 +530,8 @@ export default function Catalogo() {
               </div>
             </>
           ) : (
-            <div className="card-shell p-8">
-              <p className="font-display text-3xl font-medium tracking-[-0.04em] text-ink">
+            <div className="card-shell p-6 sm:p-8">
+              <p className="font-display text-[1.9rem] font-medium leading-[1.08] tracking-[-0.04em] text-ink sm:text-3xl">
                 {BRAND_CONTENT.catalogEmptyTitle}
               </p>
               <p className="mt-4 max-w-xl text-sm leading-7 text-slate">
@@ -538,8 +541,9 @@ export default function Catalogo() {
                 href={whatsappHref}
                 target={hasWhatsApp ? '_blank' : undefined}
                 rel={hasWhatsApp ? 'noreferrer' : undefined}
-                className="button-primary mt-6"
+                className="button-primary mt-6 w-full gap-2 sm:w-auto"
               >
+                <WhatsAppIcon className="h-[18px] w-[18px] shrink-0" />
                 Falar com a loja
               </a>
             </div>
@@ -547,7 +551,7 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section id="sobre" className="luxury-container scroll-mt-24 py-12 sm:py-14">
+      <section id="sobre" className="luxury-container scroll-mt-24 py-10 sm:py-14">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="section-label">{BRAND_CONTENT.trustEyebrow}</p>
@@ -558,7 +562,7 @@ export default function Catalogo() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3 lg:gap-6">
+        <div className="mt-8 grid gap-4 md:grid-cols-3 lg:mt-10 lg:gap-6">
           {TRUST_ITEMS.map((item) => (
             <article key={item.title} className="card-shell p-6">
               <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
@@ -568,8 +572,8 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="luxury-container py-12 sm:py-14">
-        <div className="soft-panel overflow-hidden p-6 sm:p-8">
+      <section className="luxury-container py-10 sm:py-14">
+        <div className="soft-panel overflow-hidden p-5 sm:p-8">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="section-label">Atendimento</p>
@@ -581,8 +585,9 @@ export default function Catalogo() {
               href={whatsappHref}
               target={hasWhatsApp ? '_blank' : undefined}
               rel={hasWhatsApp ? 'noreferrer' : undefined}
-              className="button-primary"
+              className="button-primary w-full gap-2 sm:w-auto"
             >
+              <WhatsAppIcon className="h-[18px] w-[18px] shrink-0" />
               {BRAND_CONTENT.finalCtaButton}
             </a>
           </div>
