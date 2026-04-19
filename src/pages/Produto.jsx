@@ -431,26 +431,28 @@ export default function Produto() {
         )}
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ivory/95 p-3.5 shadow-[0_-8px_24px_rgba(46,31,9,0.10)] backdrop-blur sm:hidden">
-        {whatsappUrl ? (
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="button-primary w-full gap-2"
-          >
-            <WhatsAppIcon className="h-5 w-5" />
-            {PRODUCT_PAGE_CONTENT.cta}
-          </a>
-        ) : (
-          <button
-            type="button"
-            disabled
-            className="button-primary w-full cursor-not-allowed opacity-50"
-          >
-            Configure o WhatsApp nas envs
-          </button>
-        )}
+      <div className="fixed bottom-[max(0.5rem,env(safe-area-inset-bottom))] left-0 right-0 z-40 px-3 sm:hidden">
+        <div className="mx-auto w-full max-w-full rounded-2xl border border-line bg-ivory/95 p-2.5 shadow-[0_-8px_24px_rgba(46,31,9,0.10)] backdrop-blur">
+          {whatsappUrl ? (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gold px-4 py-2.5 text-[0.92rem] font-medium text-white transition duration-150"
+            >
+              <WhatsAppIcon className="h-[17px] w-[17px] shrink-0" />
+              <span className="truncate">{PRODUCT_PAGE_CONTENT.cta}</span>
+            </a>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-gold px-4 py-2.5 text-[0.92rem] font-medium text-white opacity-50"
+            >
+              <span className="truncate">Configure o WhatsApp nas envs</span>
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
