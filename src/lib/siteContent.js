@@ -13,8 +13,6 @@ export const BRAND_CONTENT = {
   catalogTitle: 'Perfumes dispon\u00edveis',
   catalogCopy:
     'Use os filtros para encontrar mais r\u00e1pido o perfil, a fam\u00edlia olfativa ou o g\u00eanero que voc\u00ea procura.',
-  catalogFeaturedNote:
-    'Quando a busca est\u00e1 aberta, os destaques da loja aparecem primeiro.',
   catalogCounterLabel: 'Dispon\u00edveis agora',
   catalogEmptyTitle: 'Nenhum perfume apareceu nesta combina\u00e7\u00e3o.',
   catalogEmptyCopy:

@@ -353,13 +353,13 @@ export default function Catalogo() {
             <p className="mt-1">
               {loading ? 'Atualizando a colecao...' : `${totalCount} perfume(s) disponiveis`}
             </p>
-            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate">
-              {normalizedSearch
-                ? `Resultados para "${normalizedSearch}"`
-                : hasActiveFilters
-                  ? 'Busca refinada pelos seus filtros'
-                  : BRAND_CONTENT.catalogFeaturedNote}
-            </p>
+            {(normalizedSearch || hasActiveFilters) && (
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate">
+                {normalizedSearch
+                  ? `Resultados para "${normalizedSearch}"`
+                  : 'Busca refinada pelos seus filtros'}
+              </p>
+            )}
           </div>
         </div>
 
